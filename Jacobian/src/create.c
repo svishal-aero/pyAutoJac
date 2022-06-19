@@ -17,7 +17,7 @@ static void evalNumEntries(Jacobian *jacobian, Variable *var, int iVar, int jVar
         if(dVar==jacobian->input)
         {
             int iDVar = (dep->indices==NULL) ? iVar : dep->indices[iVar];
-            for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
+            if(iDVar>=0) for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
             {
                 int index = iDVar*dVar->elemSize + jDVar;
                 nCols += HashMap__addKey(&jacRowMap, index);
@@ -27,7 +27,7 @@ static void evalNumEntries(Jacobian *jacobian, Variable *var, int iVar, int jVar
         else
         {
             int iDVar = (dep->indices==NULL) ? iVar : dep->indices[iVar];
-            for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
+            if(iDVar>=0) for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
             {
                 evalNumEntries(jacobian, dVar, iDVar, jDVar);
             }

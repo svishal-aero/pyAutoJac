@@ -14,7 +14,7 @@ static void evalEntries(Jacobian *jacobian, int iRow, Variable *var, int iVar, i
         if(dVar==jacobian->input)
         {
             int iDVar = (dep->indices==NULL) ? iVar : dep->indices[iVar];
-            for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
+            if(iDVar>=0) for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
             {
                 int index = iDVar*dVar->elemSize + jDVar;
                 int iEntry = (void*)bsearch(&index,
@@ -32,7 +32,7 @@ static void evalEntries(Jacobian *jacobian, int iRow, Variable *var, int iVar, i
         else
         {
             int iDVar = (dep->indices==NULL) ? iVar : dep->indices[iVar];
-            for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
+            if(iDVar>=0) for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
             {
                 evalEntries(
                     jacobian, iRow, dVar, iDVar, jDVar,
