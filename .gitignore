@@ -1,0 +1,6 @@
+**/obj
+**/*.so
+**/*.py
+**/make.log
+**/Makefile
+!example/Makefile
