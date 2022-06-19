@@ -1,4 +1,0 @@
-make[1]: Entering directory '/home/svishal/Git/pyJacADF/Jacobian'
-gcc  -c -O3 -fPIC -o obj/evaluate.o src/evaluate.c
-gcc  -O3 -shared -fPIC -o libJacobian.so obj/create.o obj/delete.o obj/evaluate.o obj/init.o -Wl,-rpath=/home/svishal/Git/pyJacADF/DepVarList/DepVar -L/home/svishal/Git/pyJacADF/DepVarList/DepVar -lDepVar -Wl,-rpath=/home/svishal/Git/pyJacADF/DepVarList -L/home/svishal/Git/pyJacADF/DepVarList -lDepVarList -Wl,-rpath=/home/svishal/Git/pyJacADF/Variable -L/home/svishal/Git/pyJacADF/Variable -lVariable
-make[1]: Leaving directory '/home/svishal/Git/pyJacADF/Jacobian'

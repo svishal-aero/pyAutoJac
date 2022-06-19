@@ -3,4 +3,5 @@
 **/*.py
 **/make.log
 **/Makefile
+**/a.out
 !example/Makefile
