@@ -27,6 +27,6 @@ void Variable__create(Variable *self,
 void Variable__addDepVar(Variable *self,
                          Variable *variable,
                          int *indices,
-                         double *sens);
+                         double ***sens);
 
 void Variable__calculate(Variable *self);

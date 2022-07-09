@@ -40,16 +40,19 @@ int main()
 
     Variable__addDepVar(y, x, NULL, NULL);
     DepVar *dep_x = y->depVarList.first;
-    for(int i=0; i<6; i++) dep_x->sens[i] = 2*i+2;
+    for(int i=0; i<2; i++) for(int j=0; j<1; j++) for(int jD=0; jD<3; jD++)
+        dep_x->sens[j][jD][i] = 2*(i*3+jD)+2;
+
     printf("dy/dx =\n");
-    for(int i=0; i<6; i++) printf("    %le\n", dep_x->sens[i]);
+    for(int i=0; i<2; i++) for(int j=0; j<1; j++) for(int jD=0; jD<3; jD++)
+        printf("    %le\n", dep_x->sens[j][jD][i]);
 
     Variable__addDepVar(z, y, NULL, NULL);
     DepVar *dep_y = z->depVarList.first;
-    dep_y->sens[0] = 1.0/14;
-    dep_y->sens[1] = 1.0/77;
+    dep_y->sens[0][0][0] = 1.0/14;
+    dep_y->sens[0][0][1] = 1.0/77;
     printf("dz/dy =\n");
-    for(int i=0; i<2; i++) printf("    %le\n", dep_y->sens[i]);
+    for(int i=0; i<2; i++) printf("    %le\n", dep_y->sens[0][0][i]);
 
     Jacobian *J = calloc(1, sizeof(Jacobian));
     Jacobian__init(J);

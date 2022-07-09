@@ -14,5 +14,5 @@ DepVarList;
 void DepVarList__init(DepVarList *self);
 void DepVarList__addDepVar(DepVarList *self, int nElemsOut, int elemSizeOut,
                            int elemSizeIn, void *variable, int *indices,
-                           double *sens);
+                           double ***sens);
 void DepVarList__delete(DepVarList *self);

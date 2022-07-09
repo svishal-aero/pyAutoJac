@@ -24,8 +24,7 @@ static void evalEntries(Jacobian *jacobian, int iRow, Variable *var, int iVar, i
                            - (void*)(jacobian->columns);
                 iEntry /= sizeof(int);
                 printf("iEntry = %d\n", iEntry);
-                jacobian->entries[iEntry] +=
-                    sens*dep->sens[(iVar*var->elemSize+jVar)*dVar->elemSize+jDVar];
+                jacobian->entries[iEntry] += sens*dep->sens[jVar][jDVar][iVar];
             }
         }
 
@@ -34,10 +33,7 @@ static void evalEntries(Jacobian *jacobian, int iRow, Variable *var, int iVar, i
             int iDVar = (dep->indices==NULL) ? iVar : dep->indices[iVar];
             if(iDVar>=0) for(int jDVar=0; jDVar<dVar->elemSize; jDVar++)
             {
-                evalEntries(
-                    jacobian, iRow, dVar, iDVar, jDVar,
-                    sens*dep->sens[(iVar*var->elemSize+jVar)*dVar->elemSize+jDVar]
-                );
+                evalEntries(jacobian, iRow, dVar, iDVar, jDVar, sens*dep->sens[jVar][jDVar][iVar]);
             }
         }
     }

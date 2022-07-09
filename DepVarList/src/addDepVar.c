@@ -3,7 +3,7 @@
 
 void DepVarList__addDepVar(DepVarList *self, int nElemsOut, int elemSizeOut,
                            int elemSizeIn, void *variable, int *indices,
-                           double *sens)
+                           double ***sens)
 {
     DepVar *temp = calloc(1, sizeof(DepVar));
     DepVar__init(temp);

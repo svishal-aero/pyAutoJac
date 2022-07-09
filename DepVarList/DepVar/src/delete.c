@@ -7,6 +7,17 @@ void DepVar__delete(DepVar *self)
     DepVar *next = self->next;
     if(prev!=NULL) prev->next = next;
     if(next!=NULL) next->prev = prev;
-    if(self->sensFlag) free(self->sens);
+    if(self->sensFlag)
+    {
+        for(int i=0; i<self->elemSizeOut; i++)
+        {
+            for(int j=0; j<self->elemSizeIn; j++)
+            {
+                free(self->sens[i][j]);
+            }
+            free(self->sens[i]);
+        }
+        free(self->sens);
+    }
     DepVar__init(self);
 }
