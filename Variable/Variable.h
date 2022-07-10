@@ -9,8 +9,6 @@ typedef struct Variable
     int nElems;
     int elemSize;
     double *data;
-    int calcFlag;
-    void (*calculate)();
     DepVarList depVarList;
 }
 Variable;
@@ -28,5 +26,3 @@ void Variable__addDepVar(Variable *self,
                          Variable *variable,
                          int *indices,
                          double ***sens);
-
-void Variable__calculate(Variable *self);
